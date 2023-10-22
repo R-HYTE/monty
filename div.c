@@ -30,7 +30,7 @@ void _div(stack_t **stack, unsigned int line_number)
 	curr = *stack;
 	if (curr->n == 0)
 	{
-		fprintf(stderr, "L%d: divisionby zero\n", line_number);
+		fprintf(stderr, "L%d: division by zero\n", line_number);
 		fclose(pub.file);
 		free(pub.string);
 		free_stack(*stack);
