@@ -14,7 +14,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	/* When stack is empty*/
 	if (curr == NULL)
 	{
-		fprintf(stderr, "L%d: Can't pchar, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
 		fclose(pub.file);
 		free(pub.string);
 		free_stack(*stack);
@@ -23,7 +23,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	/*Outside ASCII range*/
 	if (curr->n > 127 || curr->n < 0)
 	{
-		fprintf(stderr, "L%d: Can't pchar, value out of range\n", line_number);
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
 		fclose(pub.file);
 		free(pub.string);
 		free_stack(*stack);
