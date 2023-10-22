@@ -11,10 +11,10 @@ pub_t pub = {NULL, NULL, NULL, 0};
 int main(int argc, char *argv[])
 {
 	stack_t *head = NULL;
-	char *string = (char *)malloc(256);
+	char *string;
 	FILE *file;
 	size_t size = 0;
-	/*ssize_t char_read = 1;*/
+	ssize_t char_read = 1;
 	unsigned int line_number = 0;
 
 	if (argc != 2)
@@ -29,20 +29,15 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	pub.file = file;
-
-	while (fgets(string, size, file) != NULL)
+	while (char_read > 0)
 	{
-		size_t length = strlen(string);
-
-		if (string[length - 1] == '\n')
-		{
-			/* Remove the newline character at the end of the line. */
-			string[length - 1] = '\0';
-		}
-
+		string = NULL;
+		char_read = getline(&string, &size, file);
 		pub.string = string;
 		line_number++;
-		execute(string, &head, line_number, file);
+		if (char_read > 0)
+			execute(string, &head, line_number, file);
+		free(string);
 	}
 
 	free_stack(head);
